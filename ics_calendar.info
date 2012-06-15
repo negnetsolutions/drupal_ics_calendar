@@ -1,0 +1,13 @@
+name = "ICS Calendar"
+description = "Creates various calendars from ics feed data."
+core = 7.x
+package = "ics_calendar"
+dependencies[] = libraries
+files[] = ics_calendar.install
+files[] = ics_calendar.module
+files[] = ics_calendar.css
+files[] = ics_calendar.admin.inc
+files[] = ics_calendar_list.tpl.php
+files[] = ics_calendar_calendar.tpl.php
+files[] = ics_calendar.data_parser.class.php
+configure=admin/config/media/ics_calendar

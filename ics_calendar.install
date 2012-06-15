@@ -1,0 +1,27 @@
+<?php
+/*
+ * @file
+ * Install and uninstall hooks
+ * Remove variables from table while uninstalling
+ */
+/**
+ * Implementation of hook_uninstall().
+ */
+function ics_calendar_uninstall() {
+  // Remove cache dir and it's contents if exists
+  file_unmanaged_delete_recursive(variable_get('ics_calendar_cach_dir'));
+
+  foreach (variable_get('ics_calendar_block_ids', array()) AS $delta) {
+    variable_del("ics_calendar_block_{$delta}_calendar_ics");
+    variable_del("ics_calendar_block_{$delta}_cache_timeout");
+    variable_del("ics_calendar_block_{$delta}_ics_admin_title");
+    variable_del("ics_calendar_block_{$delta}_ics_type");
+  }
+
+
+  // Remove variables
+  variable_del('ics_calendar_block_ids');
+  variable_del('ics_calendar_cach_dir');
+  variable_del('ics_calendar_defaultics');
+  variable_del('ics_calendar_cache_timeout');
+}

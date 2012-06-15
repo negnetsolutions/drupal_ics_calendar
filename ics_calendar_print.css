@@ -1,0 +1,37 @@
+/* line 2, ics_calendar_print.sass */
+.event_calendar-nav-wrapper h3 { font-size: 1.7em; }
+/* line 4, ics_calendar_print.sass */
+.event_calendar-nav-wrapper .pager { display: none; }
+
+/* line 6, ics_calendar_print.sass */
+.event_calendar { font-size: 0.9em; width: 764px; border-collapse: collapse; }
+/* line 10, ics_calendar_print.sass */
+.event_calendar th { text-align: center; }
+/* line 12, ics_calendar_print.sass */
+.event_calendar tr { border-width: 0px; }
+/* line 14, ics_calendar_print.sass */
+.event_calendar td { width: 109px; vertical-align: top; padding: 4px; }
+/* line 18, ics_calendar_print.sass */
+.event_calendar td.day { border: 1px solid #cccccc; height: 90px; }
+/* line 21, ics_calendar_print.sass */
+.event_calendar td.today { border-color: #7c7f12; border-width: 2px; }
+/* line 24, ics_calendar_print.sass */
+.event_calendar td .daylabel { text-align: right; color: white; color: #777777; padding-right: 0.5em; }
+/* line 29, ics_calendar_print.sass */
+.event_calendar td .daylabel span { display: none; }
+/* line 31, ics_calendar_print.sass */
+.event_calendar td .events { margin: 0; padding: 0; }
+/* line 34, ics_calendar_print.sass */
+.event_calendar td .events li { margin: 0 0 0.2em 0 !important; padding: 0 !important; list-style-type: none; }
+/* line 38, ics_calendar_print.sass */
+.event_calendar td .events li.all_day { text-align: center; font-style: italic; }
+/* line 41, ics_calendar_print.sass */
+.event_calendar td .events li .event_title { font-weight: bold; }
+/* line 43, ics_calendar_print.sass */
+.event_calendar td .events li dl { position: relative; display: inline; }
+/* line 47, ics_calendar_print.sass */
+.event_calendar td .events li dl:hover dd { display: block; }
+/* line 49, ics_calendar_print.sass */
+.event_calendar td .events li dt { display: inline; cursor: pointer; }
+/* line 52, ics_calendar_print.sass */
+.event_calendar td .events li dd { display: none; }

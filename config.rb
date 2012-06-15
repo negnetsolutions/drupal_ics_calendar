@@ -1,0 +1,9 @@
+http_path = "/"
+css_dir = "./"
+sass_dir = "./"
+images_dir = "./"
+javascripts_dir = "./"
+output_style = :compact
+#output_style = :compressed
+relative_assets = true
+preferred_syntax = :sass
