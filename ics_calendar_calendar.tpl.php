@@ -34,7 +34,7 @@ $today = mktime(0,0,0,date('n',time()),date('j',time()),date('Y',time()));
     <div class="date-heading">
       <h3><?php print date('F Y', $month_start_ts)?></h3>
     </div>
-  </div> 
+  </div>
 
   <table class="event_calendar">
     <tr>

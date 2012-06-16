@@ -219,6 +219,7 @@ function theme_ics_calendar_week_calendar_wrapper($variables) {
 
   drupal_add_css(drupal_get_path('module', 'ics_calendar') . '/ics_calendar.css', array('type'=>'file', 'media'=>'screen'));
   drupal_add_css(drupal_get_path('module', 'ics_calendar') . '/ics_calendar_print.css', array('type'=>'file', 'media'=>'print'));
+  drupal_add_js(drupal_get_path('module','ics_calendar').'/ics_calendar.js');
 
   $ics_feed = ($variables['feed'] != null) ? $variables['feed'] : variable_get('ics_calendar_defaultics', NULL);
   $timeout = ($variables['timeout'] != null) ? $variables['timeout'] : variable_get('ics_calendar_cache_timeout', NULL);
@@ -259,7 +260,7 @@ function theme_ics_calendar_month_calendar_wrapper($variables) {
 
   drupal_add_css(drupal_get_path('module', 'ics_calendar') . '/ics_calendar.css', array('type'=>'file', 'media'=>'screen'));
   drupal_add_css(drupal_get_path('module', 'ics_calendar') . '/ics_calendar_print.css', array('type'=>'file', 'media'=>'print'));
-  // drupal_add_css(drupal_get_path('module', 'ics_calendar') . '/ics_calendar_print.css', array('type'=>'file', 'media'=>'screen'));
+  drupal_add_js(drupal_get_path('module','ics_calendar').'/ics_calendar.js');
 
   $ics_feed = ($variables['feed'] != null) ? $variables['feed'] : variable_get('ics_calendar_defaultics', NULL);
   $timeout = ($variables['timeout'] != null) ? $variables['timeout'] : variable_get('ics_calendar_cache_timeout', NULL);
