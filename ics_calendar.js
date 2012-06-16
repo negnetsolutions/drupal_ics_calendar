@@ -2,7 +2,7 @@ jQuery(document).ready(function(){
 
   //add a print link
   if(window.print && jQuery(".event_calendar-nav-wrapper").length) {
-    jQuery(".ics_calendar").append("<p class='printer_icon'><a  href='javascript:window.print();'><span>&nbsp;</span>Print Calendar</a></p>");
+    jQuery(".event_calendar").append("<p class='printer_icon'><a  href='javascript:window.print();'><span>&nbsp;</span>Print Calendar</a></p>");
   }
 
   jQuery('.event_calendar dl').hover(function(event){
