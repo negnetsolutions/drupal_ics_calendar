@@ -41,15 +41,15 @@ $today = mktime(0,0,0,date('n',time()),date('j',time()),date('Y',time()));
     </div>
   </div> 
 
-  <table class="event_calendar">
+  <table class="event_calendar weekly">
     <tr>
-      <th>Sun</th>
-      <th>Mon</th>
-      <th>Tue</th>
-      <th>Wed</th>
-      <th>Thu</th>
-      <th>Fri</th>
-      <th>Sat</th>
+      <th class="<?php print (($sunday + (86400 * 0)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday);?> </span>Sun</th>
+      <th class="<?php print (($sunday + (86400 * 1)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday+(86400 * 1));?> </span>Mon</th>
+      <th class="<?php print (($sunday + (86400 * 2)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday+(86400 * 2));?> </span>Tue</th>
+      <th class="<?php print (($sunday + (86400 * 3)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday+(86400 * 3));?> </span>Wed</th>
+      <th class="<?php print (($sunday + (86400 * 4)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday+(86400 * 4));?> </span>Thu</th>
+      <th class="<?php print (($sunday + (86400 * 5)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday+(86400 * 5));?> </span>Fri</th>
+      <th class="<?php print (($sunday + (86400 * 6)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday+(86400 * 6));?> </span>Sat</th>
     </tr>
     <tr>
 <?php
@@ -60,7 +60,7 @@ for($i = 0; $i < 7; $i++) {
   $day_ts = mktime(0,0,0,date('n',$sunday),$day,$year);
   $is_today = ($day_ts == $today) ? true : false;
 ?>
-<td class="day<?php print ($is_today) ? ' today':''; ?><?php print (!isset($events[$day_ts]) || count($events[$day_ts]) == 0) ? ' no_events' : '';?>">
+<td class="day<?php print ($i % 2) ? ' row-odd' : ' row-even'; ?><?php print ($is_today) ? ' today':''; ?><?php print (!isset($events[$day_ts]) || count($events[$day_ts]) == 0) ? ' no_events' : '';?>">
   <div class="daylabel"><span><?php print date('l M, ', $day_ts);?></span><?php print date('j',$day_ts);?></div>
   <?php if(isset($events[$day_ts]) && count($events[$day_ts]) > 0) : ?>
   <ul class="events">
@@ -92,4 +92,5 @@ for($i = 0; $i < 7; $i++) {
 ?>
   </tr>
 </table>
+<p class='printer_icon'><a  href='javascript:window.print();'><span>&nbsp;</span>Print</a></p>
 </div>

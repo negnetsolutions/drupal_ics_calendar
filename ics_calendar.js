@@ -2,7 +2,7 @@ jQuery(document).ready(function(){
 
   //add a print link
   if(window.print && jQuery(".event_calendar-nav-wrapper").length) {
-    jQuery(".event_calendar").append("<p class='printer_icon'><a  href='javascript:window.print();'><span>&nbsp;</span>Print Calendar</a></p>");
+    jQuery('.printer_icon').css('display','block');
   }
 
   jQuery('.event_calendar dl').hover(function(event){
@@ -20,8 +20,8 @@ jQuery(document).ready(function(){
       jQuery('dd',this).css('left', offset_left);
     }
     //check height
-    if( (offset_top + dd_height) > window_height ) {
-      offset_top = window_height - (offset_top + dd_height) - dd_height;
+    if( (offset_top + dd_height + 10) > window_height ) {
+      offset_top = window_height - (offset_top + dd_height) - dd_height + dd_height - 10;
       jQuery('dd',this).css('top', offset_top);
     }
   });

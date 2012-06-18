@@ -325,7 +325,18 @@ function ics_calendar_print_event_time($start, $end)
   else {
     $pm = 'p';
   }
-  return $date.$pm;
+  $output = $date.$pm;
+
+  $date = date('g:i',$end);
+  if( date('a', $end) == 'am') {
+    $pm = 'a';
+  }
+  else {
+    $pm = 'p';
+  }
+
+  return $output . '<span> - '.$date.$pm.'</span>';
+  
 }
 function ics_calendar_get_cache_folder()
 {

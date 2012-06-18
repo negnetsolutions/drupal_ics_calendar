@@ -1,5 +1,5 @@
 /* line 1, ics_calendar_print.sass */
-.printer_icon { display: none; }
+.printer_icon { display: none !important; }
 
 /* line 4, ics_calendar_print.sass */
 .event_calendar-nav-wrapper h3 { font-size: 1.7em; }

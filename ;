@@ -1,12 +1,9 @@
 .ics_calendar
   .printer_icon
+    float: right
     margin-top: 1em
-    display: none
   .event_title
     font-weight: bold
-  .event_time
-    span
-      display: none
   .ics_calendar_list
     h3
       border-top: 1px dotted gray
@@ -40,9 +37,6 @@
     border-collapse: collapse
     th
       text-align: center
-      .date
-        float: right
-        display: none
     tr
       border-width: 0px
     td
@@ -51,6 +45,8 @@
       width: 14.2%
       vertical-align: top
       padding: 4px
+      &.row-odd
+        background-color: #efefef
       &.day
         border: 1px solid #ccc
         min-height: 90px
@@ -58,22 +54,19 @@
       &.today
         border-color: #7c7f12
         border-width: 2px
-      &.row-odd
-        background-color: #efefef
-        border-color: #efefef
       .daylabel
         text-align: right
         color: white
         color: #777
         padding-right: .5em
         span
-          display: none
+          // display: none
       .events
         margin: 0 
         padding: 0 
         li
-          margin: 0 0 .2em 0
-          padding: 0
+          margin: 0 0 .2em 0 !important
+          padding: 0 !important
           list-style-type: none
           &.all_day
             text-align: center
