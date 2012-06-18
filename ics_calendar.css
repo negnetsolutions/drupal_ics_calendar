@@ -51,30 +51,32 @@
 /* line 84, ics_calendar.sass */
 .ics_calendar .event_calendar td .events li dt { display: inline; cursor: pointer; }
 /* line 87, ics_calendar.sass */
-.ics_calendar .event_calendar td .events li dd { display: none; position: absolute; top: 2em; left: 0px; width: 250px; padding: 1em; height: auto; background: black; z-index: 99999999; color: white; }
-/* line 100, ics_calendar.sass */
+.ics_calendar .event_calendar td .events li dd { display: none; position: absolute; top: 2em; left: 0px; width: 250px; height: auto; background: black; z-index: 99999999; color: white; }
+/* line 97, ics_calendar.sass */
+.ics_calendar .event_calendar td .events li dd div { padding: 1em; }
+/* line 101, ics_calendar.sass */
 .ics_calendar .event_calendar.weekly th .daylabel { float: right; }
-@media only screen and (max-width: 680px) { /* line 105, ics_calendar.sass */
+@media only screen and (max-width: 680px) { /* line 106, ics_calendar.sass */
   .ics_calendar .event_calendar table, .ics_calendar .event_calendar thead, .ics_calendar .event_calendar tbody, .ics_calendar .event_calendar tfoot, .ics_calendar .event_calendar th, .ics_calendar .event_calendar td, .ics_calendar .event_calendar tr { display: block; width: 100% !important; border: 0 !important; position: static !important; }
-  /* line 110, ics_calendar.sass */
+  /* line 111, ics_calendar.sass */
   .ics_calendar .event_calendar td.day { min-height: 0px !important; height: auto !important; }
-  /* line 113, ics_calendar.sass */
+  /* line 114, ics_calendar.sass */
   .ics_calendar .event_calendar table * { position: static !important; }
-  /* line 115, ics_calendar.sass */
+  /* line 116, ics_calendar.sass */
   .ics_calendar .event_calendar th { display: none; }
-  /* line 119, ics_calendar.sass */
+  /* line 120, ics_calendar.sass */
   .ics_calendar .event_calendar .events li.all_day { text-align: left !important; }
-  /* line 121, ics_calendar.sass */
+  /* line 122, ics_calendar.sass */
   .ics_calendar .event_calendar .events li dl { position: static !important; display: inline; }
-  /* line 125, ics_calendar.sass */
+  /* line 126, ics_calendar.sass */
   .ics_calendar .event_calendar .events li dl:hover dd { display: block; }
-  /* line 127, ics_calendar.sass */
+  /* line 128, ics_calendar.sass */
   .ics_calendar .event_calendar .events li dt { display: inline; cursor: pointer; }
-  /* line 130, ics_calendar.sass */
-  .ics_calendar .event_calendar .events li dd { position: static !important; max-width: 90% !important; }
-  /* line 133, ics_calendar.sass */
+  /* line 131, ics_calendar.sass */
+  .ics_calendar .event_calendar .events li dd { position: static !important; width: 100% !important; padding: 0 !important; margin: 0 !important; }
+  /* line 136, ics_calendar.sass */
   .ics_calendar .event_calendar .no_events { display: none; }
-  /* line 135, ics_calendar.sass */
+  /* line 138, ics_calendar.sass */
   .ics_calendar .event_calendar .daylabel { text-align: left !important; border-bottom: 1px solid #777777; margin-bottom: 1em; }
-  /* line 139, ics_calendar.sass */
+  /* line 142, ics_calendar.sass */
   .ics_calendar .event_calendar .daylabel span { display: inline !important; } }

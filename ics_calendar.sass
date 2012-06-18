@@ -90,11 +90,12 @@
             top: 2em
             left: 0px
             width: 250px
-            padding: 1em
             height: auto
             background: #000
             z-index: 99999999
             color: #fff
+            div
+              padding: 1em
     &.weekly
       th
         .daylabel
@@ -129,7 +130,9 @@
             cursor: pointer
           dd
             position: static !important
-            max-width: 90% !important
+            width: 100% !important
+            padding: 0 !important
+            margin: 0 !important
       .no_events
         display: none
       .daylabel

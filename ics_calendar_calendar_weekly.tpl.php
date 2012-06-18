@@ -71,15 +71,17 @@ for($i = 0; $i < 7; $i++) {
       <dl>
         <dt class='event_title'><? print $event['title']; ?></dt>
         <dd>
-        <?php if($event['location'] != '') : ?>
-        <p><strong>Location:</strong> <?php print $event['location'];?></p>
-        <?php endif; ?>
-        <p>
-          <strong>Duration: </strong> <?php print ics_calendar_print_duration($event['start'],$event['end']); ?>
-        </p>
-        <?php if($event['description'] != '') : ?>
-        <p><strong>Description:</strong> <?php print $event['description'];?></p>
-        <?php endif; ?>
+          <div>
+            <?php if($event['location'] != '') : ?>
+            <p><strong>Location:</strong> <?php print $event['location'];?></p>
+            <?php endif; ?>
+            <p>
+              <strong>Duration: </strong> <?php print ics_calendar_print_duration($event['start'],$event['end']); ?>
+            </p>
+            <?php if($event['description'] != '') : ?>
+            <p><strong>Description:</strong> <?php print $event['description'];?></p>
+            <?php endif; ?>
+          </div>
         </dd>
       </dl>
     </li>
