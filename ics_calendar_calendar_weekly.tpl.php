@@ -43,13 +43,12 @@ $today = mktime(0,0,0,date('n',time()),date('j',time()),date('Y',time()));
 
   <table class="event_calendar weekly">
     <tr>
-      <th class="<?php print (($sunday + (86400 * 0)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday);?> </span>Sun</th>
-      <th class="<?php print (($sunday + (86400 * 1)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday+(86400 * 1));?> </span>Mon</th>
-      <th class="<?php print (($sunday + (86400 * 2)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday+(86400 * 2));?> </span>Tue</th>
-      <th class="<?php print (($sunday + (86400 * 3)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday+(86400 * 3));?> </span>Wed</th>
-      <th class="<?php print (($sunday + (86400 * 4)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday+(86400 * 4));?> </span>Thu</th>
-      <th class="<?php print (($sunday + (86400 * 5)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday+(86400 * 5));?> </span>Fri</th>
-      <th class="<?php print (($sunday + (86400 * 6)) == $today) ? ' today':''; ?>"><span class="date"><?php print date('m / d', $sunday+(86400 * 6));?> </span>Sat</th>
+      <?php for($i = 0; $i < 7; $i++) : ?>
+      <th class="<?php print (($sunday + (86400 * $i)) == $today) ? ' today':''; ?>">
+        <div class="daylabel"><?php print date('n/d',($sunday + (86400 * $i)));?></div>
+        <?php print substr(date('D',($sunday + (86400 * $i))),0,1); ?><span class="day_name"><?php print substr(date('D',($sunday + (86400 * $i))),1);?></span>
+      </th>
+      <?php endfor; ?>
     </tr>
     <tr>
 <?php
@@ -71,16 +70,17 @@ for($i = 0; $i < 7; $i++) {
       <?php endif; ?>
       <dl>
         <dt class='event_title'><? print $event['title']; ?></dt>
-        <?php if($event['location'] != '' || $event['description'] != '') : ?>
         <dd>
         <?php if($event['location'] != '') : ?>
         <p><strong>Location:</strong> <?php print $event['location'];?></p>
         <?php endif; ?>
+        <p>
+          <strong>Duration: </strong> <?php print ics_calendar_print_duration($event['start'],$event['end']); ?>
+        </p>
         <?php if($event['description'] != '') : ?>
         <p><strong>Description:</strong> <?php print $event['description'];?></p>
         <?php endif; ?>
         </dd>
-        <?php endif; ?>
       </dl>
     </li>
     <?php endforeach; ?>

@@ -38,13 +38,13 @@ $today = mktime(0,0,0,date('n',time()),date('j',time()),date('Y',time()));
 
   <table class="event_calendar">
     <tr>
-      <th>Sun</th>
-      <th>Mon</th>
-      <th>Tue</th>
-      <th>Wed</th>
-      <th>Thu</th>
-      <th>Fri</th>
-      <th>Sat</th>
+      <th>S<span>un</span></th>
+      <th>M<span>on</span></th>
+      <th>T<span>ue</span></th>
+      <th>W<span>ed</span></th>
+      <th>T<span>hu</span></th>
+      <th>F<span>ri</span></th>
+      <th>S<span>at</span></th>
     </tr>
     <tr>
 <?php

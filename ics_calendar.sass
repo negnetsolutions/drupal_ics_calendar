@@ -40,9 +40,6 @@
     border-collapse: collapse
     th
       text-align: center
-      .date
-        float: right
-        display: none
     tr
       border-width: 0px
     td
@@ -98,6 +95,10 @@
             background: #000
             z-index: 99999999
             color: #fff
+    &.weekly
+      th
+        .daylabel
+          float: right
 
   @media only screen and (max-width: 680px)
     .event_calendar

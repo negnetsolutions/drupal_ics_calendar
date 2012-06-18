@@ -23,50 +23,50 @@
 /* line 41, ics_calendar.sass */
 .ics_calendar .event_calendar th { text-align: center; }
 /* line 43, ics_calendar.sass */
-.ics_calendar .event_calendar th .date { float: right; display: none; }
-/* line 46, ics_calendar.sass */
 .ics_calendar .event_calendar tr { border-width: 0px; }
-/* line 48, ics_calendar.sass */
+/* line 45, ics_calendar.sass */
 .ics_calendar .event_calendar td { width: 14.2%; vertical-align: top; padding: 4px; }
-/* line 49, ics_calendar.sass */
+/* line 46, ics_calendar.sass */
 .ics_calendar .event_calendar td strong { font-weight: bold; }
-/* line 54, ics_calendar.sass */
+/* line 51, ics_calendar.sass */
 .ics_calendar .event_calendar td.day { border: 1px solid #cccccc; min-height: 90px; height: 90px; }
-/* line 58, ics_calendar.sass */
+/* line 55, ics_calendar.sass */
 .ics_calendar .event_calendar td.today { border-color: #7c7f12; border-width: 2px; }
-/* line 61, ics_calendar.sass */
+/* line 58, ics_calendar.sass */
 .ics_calendar .event_calendar td.row-odd { background-color: #efefef; border-color: #efefef; }
-/* line 64, ics_calendar.sass */
+/* line 61, ics_calendar.sass */
 .ics_calendar .event_calendar td .daylabel { text-align: right; color: white; color: #777777; padding-right: 0.5em; }
-/* line 69, ics_calendar.sass */
+/* line 66, ics_calendar.sass */
 .ics_calendar .event_calendar td .daylabel span { display: none; }
-/* line 71, ics_calendar.sass */
+/* line 68, ics_calendar.sass */
 .ics_calendar .event_calendar td .events { margin: 0; padding: 0; }
-/* line 74, ics_calendar.sass */
+/* line 71, ics_calendar.sass */
 .ics_calendar .event_calendar td .events li { margin: 0 0 0.2em 0; padding: 0; list-style-type: none; }
-/* line 78, ics_calendar.sass */
+/* line 75, ics_calendar.sass */
 .ics_calendar .event_calendar td .events li.all_day { text-align: center; font-style: italic; }
-/* line 81, ics_calendar.sass */
+/* line 78, ics_calendar.sass */
 .ics_calendar .event_calendar td .events li dl { position: relative; display: inline; }
-/* line 85, ics_calendar.sass */
+/* line 82, ics_calendar.sass */
 .ics_calendar .event_calendar td .events li dl:hover dd { display: block; }
-/* line 87, ics_calendar.sass */
+/* line 84, ics_calendar.sass */
 .ics_calendar .event_calendar td .events li dt { display: inline; cursor: pointer; }
-/* line 90, ics_calendar.sass */
+/* line 87, ics_calendar.sass */
 .ics_calendar .event_calendar td .events li dd { display: none; position: absolute; top: 2em; left: 0px; width: 250px; padding: 1em; height: auto; background: black; z-index: 99999999; color: white; }
-@media only screen and (max-width: 680px) { /* line 104, ics_calendar.sass */
+/* line 100, ics_calendar.sass */
+.ics_calendar .event_calendar.weekly th .daylabel { float: right; }
+@media only screen and (max-width: 680px) { /* line 105, ics_calendar.sass */
   .ics_calendar .event_calendar table, .ics_calendar .event_calendar thead, .ics_calendar .event_calendar tbody, .ics_calendar .event_calendar tfoot, .ics_calendar .event_calendar th, .ics_calendar .event_calendar td, .ics_calendar .event_calendar tr { display: block; width: 100% !important; border: 0 !important; position: static !important; }
-  /* line 109, ics_calendar.sass */
+  /* line 110, ics_calendar.sass */
   .ics_calendar .event_calendar td.day { min-height: 0px !important; height: auto !important; }
-  /* line 112, ics_calendar.sass */
+  /* line 113, ics_calendar.sass */
   .ics_calendar .event_calendar table * { position: static !important; }
-  /* line 114, ics_calendar.sass */
+  /* line 115, ics_calendar.sass */
   .ics_calendar .event_calendar th { display: none; }
-  /* line 118, ics_calendar.sass */
+  /* line 119, ics_calendar.sass */
   .ics_calendar .event_calendar .events li.all_day { text-align: left !important; }
-  /* line 120, ics_calendar.sass */
+  /* line 121, ics_calendar.sass */
   .ics_calendar .event_calendar .no_events { display: none; }
-  /* line 122, ics_calendar.sass */
+  /* line 123, ics_calendar.sass */
   .ics_calendar .event_calendar .daylabel { text-align: left !important; border-bottom: 1px solid #777777; margin-bottom: 1em; }
-  /* line 126, ics_calendar.sass */
+  /* line 127, ics_calendar.sass */
   .ics_calendar .event_calendar .daylabel span { display: inline !important; } }
