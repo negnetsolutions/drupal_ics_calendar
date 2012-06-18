@@ -69,16 +69,17 @@ for($i = 1; $i < 43; $i++) {
       <?php endif; ?>
       <dl>
         <dt class='event_title'><? print $event['title']; ?></dt>
-        <?php if($event['location'] != '' || $event['description'] != '') : ?>
         <dd>
         <?php if($event['location'] != '') : ?>
         <p><strong>Location:</strong> <?php print $event['location'];?></p>
         <?php endif; ?>
+        <p>
+          <strong>Duration: </strong> <?php print ics_calendar_print_duration($event['start'],$event['end']); ?>
+        </p>
         <?php if($event['description'] != '') : ?>
         <p><strong>Description:</strong> <?php print $event['description'];?></p>
         <?php endif; ?>
         </dd>
-        <?php endif; ?>
       </dl>
     </li>
     <?php endforeach; ?>
