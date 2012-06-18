@@ -37,7 +37,7 @@ $today = mktime(0,0,0,date('n',time()),date('j',time()),date('Y',time()));
       </li>
     </ul>
     <div class="date-heading">
-      <h3><?php print date('F d', $sunday).' - '.date('F d, Y',$next_week-1);?></h3>
+      <h3><?php print date('F', $sunday).'<span> '.date('d',$sunday).' - '.date('F d,',$next_week-1);?></span> <?php print date('Y', $sunday); ?></h3>
     </div>
   </div> 
 

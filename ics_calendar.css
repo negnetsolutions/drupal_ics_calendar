@@ -65,8 +65,16 @@
   /* line 119, ics_calendar.sass */
   .ics_calendar .event_calendar .events li.all_day { text-align: left !important; }
   /* line 121, ics_calendar.sass */
-  .ics_calendar .event_calendar .no_events { display: none; }
-  /* line 123, ics_calendar.sass */
-  .ics_calendar .event_calendar .daylabel { text-align: left !important; border-bottom: 1px solid #777777; margin-bottom: 1em; }
+  .ics_calendar .event_calendar .events li dl { position: static !important; display: inline; }
+  /* line 125, ics_calendar.sass */
+  .ics_calendar .event_calendar .events li dl:hover dd { display: block; }
   /* line 127, ics_calendar.sass */
+  .ics_calendar .event_calendar .events li dt { display: inline; cursor: pointer; }
+  /* line 130, ics_calendar.sass */
+  .ics_calendar .event_calendar .events li dd { position: static !important; max-width: 90% !important; }
+  /* line 133, ics_calendar.sass */
+  .ics_calendar .event_calendar .no_events { display: none; }
+  /* line 135, ics_calendar.sass */
+  .ics_calendar .event_calendar .daylabel { text-align: left !important; border-bottom: 1px solid #777777; margin-bottom: 1em; }
+  /* line 139, ics_calendar.sass */
   .ics_calendar .event_calendar .daylabel span { display: inline !important; } }
