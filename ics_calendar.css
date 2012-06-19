@@ -77,6 +77,8 @@
   /* line 136, ics_calendar.sass */
   .ics_calendar .event_calendar .no_events { display: none; }
   /* line 138, ics_calendar.sass */
-  .ics_calendar .event_calendar .daylabel { text-align: left !important; border-bottom: 1px solid #777777; margin-bottom: 1em; }
+  .ics_calendar .event_calendar .daylabel { text-align: left; border-bottom: 1px solid #777777; margin-bottom: 1em; }
   /* line 142, ics_calendar.sass */
-  .ics_calendar .event_calendar .daylabel span { display: inline !important; } }
+  .ics_calendar .event_calendar .daylabel div { display: inline; }
+  /* line 144, ics_calendar.sass */
+  .ics_calendar .event_calendar .daylabel span { display: inline; } }

@@ -60,7 +60,8 @@ for($i = 0; $i < 7; $i++) {
   $is_today = ($day_ts == $today) ? true : false;
 ?>
 <td class="day<?php print ($i % 2) ? ' row-odd' : ' row-even'; ?><?php print ($is_today) ? ' today':''; ?><?php print (!isset($events[$day_ts]) || count($events[$day_ts]) == 0) ? ' no_events' : '';?>">
-  <div class="daylabel"><span><?php print date('l M, ', $day_ts);?></span><?php print date('j',$day_ts);?></div>
+  <div class="daylabel"><div><?php print date('l', $day_ts);?><span> <?php print date('M, ', $day_ts);?></span></div><?php print date('j', $day_ts);?></div>
+  <!-- <div class="daylabel"><span><?php print date('l M, ', $day_ts);?></span><?php print date('j',$day_ts);?></div> -->
   <?php if(isset($events[$day_ts]) && count($events[$day_ts]) > 0) : ?>
   <ul class="events">
     <?php foreach($events[$day_ts] as $event) : ?>
