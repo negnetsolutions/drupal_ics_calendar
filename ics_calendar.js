@@ -3,6 +3,10 @@ jQuery(document).ready(function(){
   //add a print link
   if(window.print && jQuery(".event_calendar-nav-wrapper").length) {
     jQuery('.printer_icon').css('display','block');
+    jQuery('.printer_icon a').click(function(){
+      window.print();
+      return false;
+    });
   }
 
   jQuery('.event_calendar dl').hover(function(event){

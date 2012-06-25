@@ -130,5 +130,5 @@ for($i = 1; $i < 43; $i++) {
 ?>
   </tr>
 </table>
-<p class='printer_icon'><a  href='javascript:window.print();'><span>&nbsp;</span>Print</a></p>
+<p class='printer_icon'><a href='#'><span>&nbsp;</span>Print</a></p>
 </div>
