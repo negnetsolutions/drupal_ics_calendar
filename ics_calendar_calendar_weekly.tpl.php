@@ -80,7 +80,7 @@ for($i = 0; $i < 7; $i++) {
               <strong>Duration: </strong> <?php print ics_calendar_print_duration($event['start'],$event['end']); ?>
             </p>
             <?php if($event['description'] != '') : ?>
-            <p><strong>Description:</strong> <?php print $event['description'];?></p>
+            <p><strong>Description:</strong> <?php print ics_calendar_print_description($event['description']);?></p>
             <?php endif; ?>
           </div>
         </dd>

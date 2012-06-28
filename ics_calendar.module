@@ -339,6 +339,10 @@ function ics_calendar_print_duration($start, $end)
 
   return ($count == 1) ? '1 '.$name : "$count {$name}s";
 }
+function ics_calendar_print_description($description)
+{
+  return str_replace("\n","<br />\n", $description);
+}
 function ics_calendar_print_event_time($start, $end)
 {
   $date = date('g:i', $start);
