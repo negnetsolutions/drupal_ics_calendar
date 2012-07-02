@@ -40,7 +40,8 @@ class ical_data_parser {
     $d->modify("-1 second");
     $this->_end = $d->getTimestamp();
 
-    $data = $this->getFromCache($this->ics_file);
+    // $data = $this->getFromCache($this->ics_file);
+    $data = $this->getData($this->ics_file);
 
     return $this->filterByDay($data);
   }
@@ -161,12 +162,31 @@ class ical_data_parser {
         }
       }
       else {
-        if( $jsEvt["start"] >= $this->_start && ($this->_end - $jsEvt["start"]) >= 0 ) {
-          $data[] = $jsEvt;
+        if( $jsEvt["start"] >= $this->_start && ($this->_end - $jsEvt["start"]) >= 0 ) { //make sure start time is within parameters of view
+
+          $start = mktime(0,0,0,date('n',$jsEvt['start']),date('d',$jsEvt['start']),date('Y',$jsEvt['start']));
+          $end = mktime(0,0,0,date('n',$jsEvt['end']),date('d',$jsEvt['end']),date('Y',$jsEvt['end']));
+
+          if( $ev->isWholeDay() && ($end - $start) >= 86400 ) { //handle all day events over multiple days
+
+            for( $i = 0; $i < (($end - $start) / 86400); $i++) {
+
+              $jsEvt['start'] = $start + ( $i * 86400 );
+              $jsEvt['end'] = $start + ( ($i+1) * 86400 );
+            
+              if( $jsEvt["start"] >= $this->_start && ($this->_end - $jsEvt["start"]) >= 0 ) { //make sure start time is within parameters of view
+                $data[] = $jsEvt;
+              }
+            }
+
+          }
+          else {
+            $data[] = $jsEvt;
+          }
+
         }
       }
     }
-
     return $data;
   }
   private function _getRawEventData($ics_file)
