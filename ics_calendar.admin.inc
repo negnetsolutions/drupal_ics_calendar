@@ -92,6 +92,7 @@ function ics_calendar_settings_form() {
   $form['ics_calendar_defaultics'] = array(
     '#type' => 'textfield',
     '#title' => t('ICS Feed'),
+    '#maxlength' => 500,
     '#description' => t('URL to ICS feed'),
     '#default_value' => variable_get('ics_calendar_defaultics', NULL),
   );

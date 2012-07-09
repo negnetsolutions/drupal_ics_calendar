@@ -37,7 +37,7 @@
 /* line 61, ics_calendar.sass */
 .ics_calendar .event_calendar td .daylabel { text-align: right; color: white; color: #777777; padding-right: 0.5em; }
 /* line 66, ics_calendar.sass */
-.ics_calendar .event_calendar td .daylabel span { display: none; }
+.ics_calendar .event_calendar td .daylabel span, .ics_calendar .event_calendar td .daylabel div { display: none; }
 /* line 68, ics_calendar.sass */
 .ics_calendar .event_calendar td .events { margin: 0; padding: 0; }
 /* line 71, ics_calendar.sass */
