@@ -40,8 +40,8 @@ class ical_data_parser {
     $d->modify("-1 second");
     $this->_end = $d->getTimestamp();
 
-    // $data = $this->getFromCache($this->ics_file);
-    $data = $this->getData($this->ics_file);
+    $data = $this->getFromCache($this->ics_file);
+    // $data = $this->getData($this->ics_file);
 
     return $this->filterByDay($data);
   }
