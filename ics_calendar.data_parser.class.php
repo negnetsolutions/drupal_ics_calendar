@@ -124,6 +124,35 @@ class ical_data_parser {
     array_multisort($starts, $data);
     return $data;
   }
+  private function _isModifiedRepeatingEvent($events, $event)
+  {
+    // compares uids and start times and tries to eliminate duplicate repeating events that have modified individuals
+    $start = $event['start'];
+    if( count($results = $this->search_r($events, 'uid', $event['uid'])) > 0 ) {
+      foreach($results as $event) {
+        if( $event['start'] == $start ) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+  private function search_r($array, $key, $value)
+  {
+    $results = array();
+
+    if (is_array($array))
+    {
+      if (isset($array[$key]) && $array[$key] == $value)
+        $results[] = $array;
+
+      foreach ($array as $subarray)
+        $results = array_merge($results, $this->search_r($subarray, $key, $value));
+    }
+
+    return $results;
+  }
   private function _filterEventData($evts)
   {
     foreach($evts as $id => $ev) {
@@ -156,7 +185,7 @@ class ical_data_parser {
           $jsEvt["start"] = $start;
           $jsEvt["end"] = $start + $ev->getDuration();
 
-          if( $jsEvt["start"] >= $this->_start && ($this->_end - $jsEvt["start"]) >= 0 ) {
+          if( $jsEvt["start"] >= $this->_start && ($this->_end - $jsEvt["start"]) >= 0 && !$this->_isModifiedRepeatingEvent($data,$jsEvt) ) {
             $data[] = $jsEvt;
           }
         }
