@@ -95,5 +95,5 @@ for($i = 0; $i < 7; $i++) {
 ?>
   </tr>
 </table>
-<p class='printer_icon'><a  href='#'><span>&nbsp;</span>Print</a></p>
+<p class='printer_icon'><a  href='#'><span>p</span>Print</a></p>
 </div>
