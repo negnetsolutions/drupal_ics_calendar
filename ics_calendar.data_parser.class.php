@@ -41,8 +41,6 @@ class ical_data_parser {
     $this->_end = $d->getTimestamp();
 
     $data = $this->getFromCache($this->ics_file);
-    // $data = $this->getData($this->ics_file);
-
     return $this->filterByDay($data);
   }
   public function getDataByWeek($weekNumber,$year)
@@ -70,9 +68,7 @@ class ical_data_parser {
   {
     $days = array();
     foreach($data as $event) {
-
       $days[mktime(0,0,0,date('n', $event['start']),date('j', $event['start']),date('Y', $event['start']))][] = $event;
-    
     }
 
     return $days;
@@ -140,15 +136,19 @@ class ical_data_parser {
         'start' => $ev->getStart(),
         'end'   => $ev->getEnd(),
         'description' => $ev->getDescription(),
-
       );
 
       if (isset($ev->recurrence)) {
+
         $count = 0;
         $start = $ev->getStart();
         $freq = $ev->getFrequency();
-        if ($freq->firstOccurrence() == $start && $jsEvt["start"] >= $this->_start && ($this->_end - $jsEvt["start"]) >= 0 )
+
+        // add first event
+        if ($freq->firstOccurrence() == $start && $jsEvt["start"] >= $this->_start && ($this->_end - $jsEvt["start"]) >= 0 ) {
           $data[] = $jsEvt;
+        }
+
         while (($next = $freq->nextOccurrence($start)) > 0 ) {
           if (!$next or $jsEvt["start"] >= $this->_end ) break;
           $count++;
@@ -183,10 +183,10 @@ class ical_data_parser {
           else {
             $data[] = $jsEvt;
           }
-
         }
       }
     }
+    
     return $data;
   }
   private function _getRawEventData($ics_file)
