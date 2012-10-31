@@ -127,10 +127,12 @@ class ical_data_parser {
   private function _isModifiedRepeatingEvent($events, $event)
   {
     // compares uids and start times and tries to eliminate duplicate repeating events that have modified individuals
+    $reqid = $event['recurrence-id'];
     $start = $event['start'];
+    
     if( count($results = $this->search_r($events, 'uid', $event['uid'])) > 0 ) {
       foreach($results as $event) {
-        if( $event['start'] == $start ) {
+        if( isset($event['recurrence-id']) &&  $event['recurrence-id'] == $start ) {
           return true;
         }
       }
@@ -155,6 +157,7 @@ class ical_data_parser {
   }
   private function _filterEventData($evts)
   {
+    $data = array();
     foreach($evts as $id => $ev) {
       $jsEvt = array(
         'id' => ($id+1),
@@ -165,6 +168,7 @@ class ical_data_parser {
         'start' => $ev->getStart(),
         'end'   => $ev->getEnd(),
         'description' => $ev->getDescription(),
+        'recurrence-id' => (isset($ev->data['recurrence-id'])) ? strtotime($ev->data['recurrence-id']) : false
       );
 
       if (isset($ev->recurrence)) {
@@ -174,7 +178,7 @@ class ical_data_parser {
         $freq = $ev->getFrequency();
 
         // add first event
-        if ($freq->firstOccurrence() == $start && $jsEvt["start"] >= $this->_start && ($this->_end - $jsEvt["start"]) >= 0 ) {
+        if ($freq->firstOccurrence() == $start && $jsEvt["start"] >= $this->_start && ($this->_end - $jsEvt["start"]) >= 0 && !$this->_isModifiedRepeatingEvent($data,$jsEvt) ) {
           $data[] = $jsEvt;
         }
 
@@ -188,6 +192,7 @@ class ical_data_parser {
           if( $jsEvt["start"] >= $this->_start && ($this->_end - $jsEvt["start"]) >= 0 && !$this->_isModifiedRepeatingEvent($data,$jsEvt) ) {
             $data[] = $jsEvt;
           }
+          
         }
       }
       else {
