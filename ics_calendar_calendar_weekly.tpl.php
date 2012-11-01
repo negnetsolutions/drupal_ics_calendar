@@ -44,9 +44,12 @@ $today = mktime(0,0,0,date('n',time()),date('j',time()),date('Y',time()));
   <table class="event_calendar weekly">
     <tr>
       <?php for($i = 0; $i < 7; $i++) : ?>
-      <th class="<?php print (($sunday + (86400 * $i)) == $today) ? ' today':''; ?>">
-        <div class="daylabel"><?php print date('n/d',strtotime('@'.$sunday . ' +'. (86461 * $i) .' seconds'));?></div>
-        <?php print substr(date('D',($sunday + (86400 * $i))),0,($i == 4 || $i == 6) ? 2 : 1); ?><span class="day_name"><?php print substr(date('D',($sunday + (86400 * $i))),($i == 4 || $i == 6) ? 2 : 1);?></span>
+      <?php
+        $day_ajusted_ts = mktime( date('H',$sunday), date('i',$sunday), 0, date('n',$sunday), (date('j',$sunday) + $i), date('Y',$sunday) );
+      ?>
+      <th class="<?php print ($day_ajusted_ts == $today) ? ' today':''; ?>">
+        <div class="daylabel"><?php print date('n/d',$day_ajusted_ts);?></div>
+        <?php print substr(date('D',$day_ajusted_ts),0,($i == 4 || $i == 6) ? 2 : 1); ?><span class="day_name"><?php print substr(date('D',$day_ajusted_ts),($i == 4 || $i == 6) ? 2 : 1);?></span>
       </th>
       <?php endfor; ?>
     </tr>
