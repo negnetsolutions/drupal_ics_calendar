@@ -19,6 +19,11 @@ $next_week = $d->getTimestamp();
 $d->modify('-2 weeks');
 $last_week = $d->getTimestamp();
 
+$d->modify('+1 week +2 days');
+$wed = $d->getTimestamp();
+
+// echo date('o-W l m-d-o', $d->getTimestamp());
+// exit;
 
 ///
 $weekday_first = 0;
@@ -30,14 +35,14 @@ $today = mktime(0,0,0,date('n',time()),date('j',time()),date('Y',time()));
   <div class="event_calendar-nav-wrapper clearfix item-list">
     <ul class="pager">
       <li class="date-prev">
-        <?php print l(t('« Prev'), $_GET['q'], array('query'=>array('week'=>date('Y-W',$last_week)),'attributes'=>array('title'=>'Navigate to previous week', 'rel'=>'nofollow'))); ?>
+        <?php print l(t('« Prev'), $_GET['q'], array('query'=>array('week'=>date('o-W',$last_week)),'attributes'=>array('title'=>'Navigate to previous week', 'rel'=>'nofollow'))); ?>
       </li>
       <li class="date-next">&nbsp;
-        <?php print l(t('Next »'), $_GET['q'], array('query'=>array('week'=>date('Y-W',$next_week)),'attributes'=>array('title'=>'Navigate to next week', 'rel'=>'nofollow'))); ?>
+        <?php print l(t('Next »'), $_GET['q'], array('query'=>array('week'=>date('o-W',$next_week)),'attributes'=>array('title'=>'Navigate to next week', 'rel'=>'nofollow'))); ?>
       </li>
     </ul>
     <div class="date-heading">
-      <h3><?php print date('F', $sunday).'<span> '.date('d',$sunday).' - '.date('F d,',$next_week-1);?></span> <?php print date('Y', $sunday); ?></h3>
+      <h3><?php print date('F', $wed).'<span> '.date('d',$wed).' - '.date('F d,',$next_week-1);?></span> <?php print date('o', $wed); ?></h3>
     </div>
   </div> 
 
