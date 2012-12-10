@@ -64,7 +64,7 @@ $today = mktime(0,0,0,date('n',time()),date('j',time()),date('Y',time()));
 for($i = 0; $i < 7; $i++) {
   // get current day
   $day = ( $i + date('j',$sunday) );
-  $day_ts = mktime(0,0,0,date('n',$sunday),$day,$year);
+  $day_ts = mktime(0,0,0,date('n',$sunday),$day,date('y',$sunday));
   $is_today = ($day_ts == $today) ? true : false;
 ?>
 <td class="day<?php print ($i % 2) ? ' row-odd' : ' row-even'; ?><?php print ($is_today) ? ' today':''; ?><?php print (!isset($events[$day_ts]) || count($events[$day_ts]) == 0) ? ' no_events' : '';?>">
