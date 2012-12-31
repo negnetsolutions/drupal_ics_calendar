@@ -213,7 +213,7 @@ function theme_ics_calendar_week_calendar_wrapper($variables) {
   }
 
   $week = date('W',time());
-  $year = date('Y',time());
+  $year = date('o',time());
 
   //set month
   if(isset($_GET['week'])) {
