@@ -138,22 +138,6 @@ function ics_calendar_block_info() {
   module_load_include('inc', 'ics_calendar', 'ics_calendar.admin');
   return _ics_calendar_block_info();
 }
-// function ics_calendar_block_info()
-// {
-//   $blocks['ics_calendar_upcoming_events'] = array(
-//     'info' => t('ICS Calendar Upcoming Events'),
-//     'cache' => DRUPAL_CACHE_PER_ROLE
-//   );
-// 
-//   $blocks['ics_calendar_event_calendar'] = array(
-//     'info' => t('ICS Calendar Event Calendar'),
-//     'cache' => DRUPAL_CACHE_PER_ROLE
-//   );
-// 
-// 
-//   return $blocks;
-// }
-
 /**
  * Implements hook_block_view().
  */
@@ -229,7 +213,7 @@ function theme_ics_calendar_week_calendar_wrapper($variables) {
   }
 
   $week = date('W',time());
-  $year = date('Y',time());
+  $year = date('o',time());
 
   //set month
   if(isset($_GET['week'])) {

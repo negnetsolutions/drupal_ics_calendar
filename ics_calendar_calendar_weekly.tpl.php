@@ -19,6 +19,11 @@ $next_week = $d->getTimestamp();
 $d->modify('-2 weeks');
 $last_week = $d->getTimestamp();
 
+$d->modify('+1 week -1 day');
+$first_day = $d->getTimestamp();
+
+$d->modify('+1 week -1 day');
+$last_day = $d->getTimestamp();
 
 ///
 $weekday_first = 0;
@@ -30,23 +35,42 @@ $today = mktime(0,0,0,date('n',time()),date('j',time()),date('Y',time()));
   <div class="event_calendar-nav-wrapper clearfix item-list">
     <ul class="pager">
       <li class="date-prev">
-        <?php print l(t('« Prev'), $_GET['q'], array('query'=>array('week'=>date('Y-W',$last_week)),'attributes'=>array('title'=>'Navigate to previous week', 'rel'=>'nofollow'))); ?>
+        <?php print l(t('« Prev'), $_GET['q'], array('query'=>array('week'=>date('o-W',$last_week)),'attributes'=>array('title'=>'Navigate to previous week', 'rel'=>'nofollow'))); ?>
       </li>
       <li class="date-next">&nbsp;
-        <?php print l(t('Next »'), $_GET['q'], array('query'=>array('week'=>date('Y-W',$next_week)),'attributes'=>array('title'=>'Navigate to next week', 'rel'=>'nofollow'))); ?>
+        <?php print l(t('Next »'), $_GET['q'], array('query'=>array('week'=>date('o-W',$next_week)),'attributes'=>array('title'=>'Navigate to next week', 'rel'=>'nofollow'))); ?>
       </li>
     </ul>
     <div class="date-heading">
-      <h3><?php print date('F', $sunday).'<span> '.date('d',$sunday).' - '.date('F d,',$next_week-1);?></span> <?php print date('Y', $sunday); ?></h3>
+      <h3><?php print date('F d', $first_day);?><?php 
+
+      if(date('n', $first_day) != date('n', $last_day)) {
+
+        if( date('o',$first_day) != date('o',$last_day) ) {
+          echo date(', o', $first_day);
+        }
+
+        echo ' - '.date('F d, o', $last_day);
+      }
+      else {
+
+        echo date(' - d, o', $last_day);
+      
+      }
+      
+       ?></h3>
     </div>
   </div> 
 
   <table class="event_calendar weekly">
     <tr>
       <?php for($i = 0; $i < 7; $i++) : ?>
-      <th class="<?php print (($sunday + (86400 * $i)) == $today) ? ' today':''; ?>">
-        <div class="daylabel"><?php print date('n/d',($sunday + (86400 * $i)));?></div>
-        <?php print substr(date('D',($sunday + (86400 * $i))),0,($i == 4 || $i == 6) ? 2 : 1); ?><span class="day_name"><?php print substr(date('D',($sunday + (86400 * $i))),($i == 4 || $i == 6) ? 2 : 1);?></span>
+      <?php
+        $day_ajusted_ts = mktime( date('H',$sunday), date('i',$sunday), 0, date('n',$sunday), (date('j',$sunday) + $i), date('Y',$sunday) );
+      ?>
+      <th class="<?php print ($day_ajusted_ts == $today) ? ' today':''; ?>">
+        <div class="daylabel"><?php print date('n/d',$day_ajusted_ts);?></div>
+        <?php print substr(date('D',$day_ajusted_ts),0,($i == 4 || $i == 6) ? 2 : 1); ?><span class="day_name"><?php print substr(date('D',$day_ajusted_ts),($i == 4 || $i == 6) ? 2 : 1);?></span>
       </th>
       <?php endfor; ?>
     </tr>
@@ -56,7 +80,7 @@ $today = mktime(0,0,0,date('n',time()),date('j',time()),date('Y',time()));
 for($i = 0; $i < 7; $i++) {
   // get current day
   $day = ( $i + date('j',$sunday) );
-  $day_ts = mktime(0,0,0,date('n',$sunday),$day,$year);
+  $day_ts = mktime(0,0,0,date('n',$sunday),$day,date('y',$sunday));
   $is_today = ($day_ts == $today) ? true : false;
 ?>
 <td class="day<?php print ($i % 2) ? ' row-odd' : ' row-even'; ?><?php print ($is_today) ? ' today':''; ?><?php print (!isset($events[$day_ts]) || count($events[$day_ts]) == 0) ? ' no_events' : '';?>">
