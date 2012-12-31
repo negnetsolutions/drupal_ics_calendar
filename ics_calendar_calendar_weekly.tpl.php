@@ -19,11 +19,11 @@ $next_week = $d->getTimestamp();
 $d->modify('-2 weeks');
 $last_week = $d->getTimestamp();
 
-$d->modify('+1 week +2 days');
-$wed = $d->getTimestamp();
+$d->modify('+1 week -1 day');
+$first_day = $d->getTimestamp();
 
-// echo date('o-W l m-d-o', $d->getTimestamp());
-// exit;
+$d->modify('+1 week -1 day');
+$last_day = $d->getTimestamp();
 
 ///
 $weekday_first = 0;
@@ -42,7 +42,23 @@ $today = mktime(0,0,0,date('n',time()),date('j',time()),date('Y',time()));
       </li>
     </ul>
     <div class="date-heading">
-      <h3><?php print date('F', $wed).'<span> '.date('d',$wed).' - '.date('F d,',$next_week-1);?></span> <?php print date('o', $wed); ?></h3>
+      <h3><?php print date('F d', $first_day);?><?php 
+
+      if(date('n', $first_day) != date('n', $last_day)) {
+
+        if( date('o',$first_day) != date('o',$last_day) ) {
+          echo date(', o', $first_day);
+        }
+
+        echo ' - '.date('F d, o', $last_day);
+      }
+      else {
+
+        echo date(' - d, o', $last_day);
+      
+      }
+      
+       ?></h3>
     </div>
   </div> 
 
