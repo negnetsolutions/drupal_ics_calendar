@@ -81,6 +81,4 @@
   /* line 148, ics_calendar.sass */
   .ics_calendar .event_calendar .daylabel { text-align: left; border-bottom: 1px solid #777777; margin-bottom: 1em; }
   /* line 152, ics_calendar.sass */
-  .ics_calendar .event_calendar .daylabel div { display: inline; }
-  /* line 154, ics_calendar.sass */
-  .ics_calendar .event_calendar .daylabel span { display: inline; } }
+  .ics_calendar .event_calendar .daylabel div { display: inline !important; } }
