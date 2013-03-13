@@ -307,6 +307,7 @@ function ics_calendar_configure_form($form, &$form_state) {
       'month'  => t('Month View'),
       'week'  => t('Week View'),
       'upcoming'  => t('Upcoming Events View'),
+      'upcoming_list'  => t('Upcoming Events List View'),
     ),
   );
 
