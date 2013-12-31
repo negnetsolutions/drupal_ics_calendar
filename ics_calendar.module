@@ -51,6 +51,7 @@ function _ics_calendar_load_libaries()
 {
   if( _ics_calendar_check_libaries() ) {
     require_once libraries_get_path('SG-iCalendar') . "/SG_iCal.php";
+    require_once libraries_get_path('google_ics_fix') . "/google_ics_fix.class.php";
     require_once drupal_get_path('module', 'ics_calendar') . "/ics_calendar.data_parser.class.php";
     return true;
   }
@@ -60,15 +61,22 @@ function _ics_calendar_load_libaries()
 function _ics_calendar_check_libaries()
 {
   $library_path = libraries_get_path('SG-iCalendar');
-  if( file_exists($library_path.'/SG_iCal.php') ) {
-    return true;
-  }
-  else {
+  if( !file_exists($library_path.'/SG_iCal.php') ) {
     if (user_access('administer flickr settings')) {
       drupal_set_message(t('You need to download and place SG-iCalendar inside sites/all/libraries/SG-iCalendar:') . ' ' . l(t('https://github.com/fangel/SG-iCalendar'), 'https://github.com/fangel/SG-iCalendar'), 'error');
     }
     return FALSE;
   }
+
+  $library_path = libraries_get_path('google_ics_fix');
+  if( !file_exists($library_path.'/google_ics_fix.class.php') ) {
+    if (user_access('administer flickr settings')) {
+      drupal_set_message(t('You need to download and place google_ics_fix inside sites/all/libraries/google_ics_fix:') . ' ' . l(t('https://github.com/negnetsolutions/google_ics_fix'), 'https://github.com/negnetsolutions/google_ics_fix'), 'error');
+    }
+    return FALSE;
+  }
+
+  return true;
 }
 
 /**
