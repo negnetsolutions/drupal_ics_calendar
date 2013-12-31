@@ -226,9 +226,11 @@ class ical_data_parser {
   private function _getRawEventData($ics_file)
   {
 
-    $fixer = new google_ics_fix();
-    $ics_file = $fixer->fixFile($ics_file);
-    $ics_calendar = new SG_iCalReader($ics_file);
+    if(!is_file($ics_file.'_fixed')){
+      $fixer = new google_ics_fix();
+      $fixer->fixFile($ics_file);
+    }
+    $ics_calendar = new SG_iCalReader($ics_file.'_fixed');
     return $ics_calendar->getEvents();
   }
 

@@ -422,7 +422,7 @@ function ics_calendar_get_ics_from_cache($url, $timeout)
         //file is out of date and needs to be pruned
         unlink($path.'/'.$file);
       }
-      else if (strstr($file,'cached_') === false) {
+      else if (strstr($file,'cached_') === false && strstr($file,'_fixed') === false) {
         $hits[] = $file;
       }
     }
