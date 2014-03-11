@@ -14,6 +14,9 @@ class ical_data_parser {
   {
     $this->ics_file = $file;
   }
+  public function getInformation() {
+    return $this->_getInformation($this->getFromCache($this->ics_file));
+  }
   public function getDataByDays($start='now', $days='7')
   {
     if($start == 'now')
@@ -222,6 +225,14 @@ class ical_data_parser {
     }
     
     return $data;
+  }
+  private function _getInformation($ics_file){
+    if(!is_file($ics_file.'_fixed')){
+      $fixer = new google_ics_fix();
+      $fixer->fixFile($ics_file);
+    }
+    $ics_calendar = new SG_iCalReader($ics_file.'_fixed');
+    return $ics_calendar->getCalendarInfo();
   }
   private function _getRawEventData($ics_file)
   {

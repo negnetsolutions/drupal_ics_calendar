@@ -1,4 +1,108 @@
 <?php
+
+/* this code (noted in the callback above) creates the
+ *  * contents of the "ics_calendar" page */
+
+function ics_calendar_event_feed($page_url){
+
+  if( !_ics_calendar_load_libaries() ) {
+    return t('There is no data available at this time.');
+  }
+
+
+  $default_feed = variable_get('ics_calendar_defaultics', NULL);
+  // $ics_feed = str_replace($page_url.'/','',$_SERVER['REQUEST_URI']);
+  $ics_feed = $default_feed;
+
+  $timeout = variable_get('ics_calendar_cache_timeout', NULL);
+
+  if( ($ics_file = ics_calendar_get_ics_from_cache($ics_feed, $timeout) ) == false ) {
+    return t('There is no data available at this time.');
+  }
+  $parser = new ical_data_parser($ics_file);
+
+  $days = $parser->getDataByDays('now', 7);
+
+  $items = array();
+  foreach($days as $day => $events){
+    $title = date('l F, j',$day);
+    $body = '<ul>';
+    foreach($events as $event) {
+      $body .= '<li>';
+
+      if( $event['allDay'] != true ) {
+        $body .= "<span class='event_time'>".ics_calendar_print_event_time($event['start'],$event['end'])."</span>";
+      }
+
+      $body .= "<span class='event_title".(($event['allDay'] == true) ? ' all_day' : '')."'>".$event['title']."</span>";
+
+      if( $event['location'] != '' ) {
+        $body .= "<span class='spacer'>&nbsp; - &nbsp;</span>
+        <span class='event_location'>".$event['location']."</span>";
+      }
+
+      $body .= '</li>';
+    }
+    $body .= '</ul>';
+
+    $items[] = array(
+      'title' => $title,
+      'description' => $body
+    );
+  }
+
+  return array(
+    'title'=>'Events',
+    'link' => $page_url,
+    'items'=>$items
+  );
+
+}
+
+function ics_calendar_deliver_rss($page_callback_result){
+
+  echo <<<EOT
+<?xml version="1.0" ?>
+<rss version="2.0">
+<channel>
+
+
+EOT;
+
+  if(isset($page_callback_result['title'])){
+    echo "<title>".$page_callback_result['title']."</title>\n";
+  }
+  if(isset($page_callback_result['description'])){
+    echo "<description>".$page_callback_result['description']."</description>\n";
+  }
+  if(isset($page_callback_result['link'])){
+    echo "<link>".$page_callback_result['link']."</link>\n";
+  }
+
+  echo "\n";
+
+  if(isset($page_callback_result['items'])){
+    foreach($page_callback_result['items'] as $item){
+      echo "<item>\n";
+      if(isset($item['title'])){
+        echo "<title>".$item['title']."</title>\n";
+      }
+      if(isset($item['description'])){
+        echo "<description>".$item['description']."</description>\n";
+      }
+      echo "</item>\n\n";
+
+    }
+  }
+
+
+  echo <<<EOT
+</channel>
+</rss>
+EOT;
+
+}
+
 /**
 * @file
 * This module shows the sets and photo's from a Flickr account
@@ -85,7 +189,7 @@ function _ics_calendar_check_libaries()
 function ics_calendar_permission() {
   return array(
     'administer ics calendar settings' => array(
-      'title' => t('Administer ICS Calendar Settings'), 
+      'title' => t('Administer ICS Calendar Settings'),
       'description' => t('Administer the settings for ICS Calendar'),
     ),
   );
@@ -96,7 +200,7 @@ function ics_calendar_permission() {
 */
 function ics_calendar_menu() {
   $items = array();
-  
+
   if (module_exists('block')) {
     $items['admin/config/media/ics_calendar/add-calendar-block'] = array(
       'title' => 'Add ICS Calendar block',
@@ -134,6 +238,13 @@ function ics_calendar_menu() {
     'page callback' => 'ics_calendar_admin_settings',
     'access arguments' => array('administer ics calendar settings'),
     'file' => 'ics_calendar.admin.inc',
+  );
+
+  $items['feeds/events.rss'] = array(
+    'page callback' => 'ics_calendar_event_feed',
+    'access arguments' => array('access content'),
+    'page arguments' => array('/feeds/events.rss'),
+    'delivery callback' => 'ics_calendar_deliver_rss'
   );
   return $items;
 }
@@ -389,7 +500,7 @@ function ics_calendar_print_event_time($start, $end)
   }
 
   return $output . '<span> - '.$date.$pm.'</span>';
-  
+
 }
 function ics_calendar_get_cache_folder()
 {
