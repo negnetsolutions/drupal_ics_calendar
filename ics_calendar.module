@@ -51,9 +51,11 @@ function ics_calendar_event_feed($page_url){
     );
   }
 
+  global $base_root;
+
   return array(
     'title'=>'Events',
-    'link' => $page_url,
+    'link' => $base_root.$page_url,
     'items'=>$items
   );
 
