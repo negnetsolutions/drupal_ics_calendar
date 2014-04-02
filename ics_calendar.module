@@ -21,7 +21,7 @@ function ics_calendar_event_feed($page_url){
   }
   $parser = new ical_data_parser($ics_file);
 
-  $days = $parser->getDataByDays('now', 7);
+  $days = $parser->getDataByDays('now', 30);
 
   $items = array();
   foreach($days as $day => $events){
