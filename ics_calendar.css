@@ -58,7 +58,7 @@
 .ics_calendar .event_calendar td .events li dd div { padding: 1em; }
 /* line 111, ics_calendar.sass */
 .ics_calendar .event_calendar.weekly th .daylabel { float: right; }
-@media only screen and (max-width: 680px) { /* line 116, ics_calendar.sass */
+@media only screen and (max-width: 769px) { /* line 116, ics_calendar.sass */
   .ics_calendar .event_calendar table, .ics_calendar .event_calendar thead, .ics_calendar .event_calendar tbody, .ics_calendar .event_calendar tfoot, .ics_calendar .event_calendar th, .ics_calendar .event_calendar td, .ics_calendar .event_calendar tr { display: block; width: 100% !important; border: 0 !important; position: static !important; }
   /* line 121, ics_calendar.sass */
   .ics_calendar .event_calendar td.day { min-height: 0px !important; height: auto !important; }
