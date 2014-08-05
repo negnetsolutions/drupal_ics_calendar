@@ -29,7 +29,10 @@ class ical_data_parser {
 
     $this->_end = $d->getTimestamp();
 
-    return $this->filterByDay($this->getFromCache($this->ics_file));
+    $data = $this->getFromCache($this->ics_file);
+    // $data = $this->getData($this->ics_file);
+
+    return $this->filterByDay($data);
   }
   public function getDataByMonth($month,$year)
   {
@@ -132,7 +135,7 @@ class ical_data_parser {
     // compares uids and start times and tries to eliminate duplicate repeating events that have modified individuals
     $reqid = $event['recurrence-id'];
     $start = $event['start'];
-    
+
     if( count($results = $this->search_r($events, 'uid', $event['uid'])) > 0 ) {
       foreach($results as $event) {
         if( isset($event['recurrence-id']) &&  $event['recurrence-id'] == $start ) {
@@ -195,7 +198,7 @@ class ical_data_parser {
           if( $jsEvt["start"] >= $this->_start && ($this->_end - $jsEvt["start"]) >= 0 && !$this->_isModifiedRepeatingEvent($data,$jsEvt) ) {
             $data[] = $jsEvt;
           }
-          
+
         }
       }
       else {
@@ -210,7 +213,7 @@ class ical_data_parser {
 
               $jsEvt['start'] = $start + ( $i * 86400 );
               $jsEvt['end'] = $start + ( ($i+1) * 86400 );
-            
+
               if( $jsEvt["start"] >= $this->_start && ($this->_end - $jsEvt["start"]) >= 0 ) { //make sure start time is within parameters of view
                 $data[] = $jsEvt;
               }
@@ -223,7 +226,7 @@ class ical_data_parser {
         }
       }
     }
-    
+
     return $data;
   }
   private function _getInformation($ics_file){
@@ -237,11 +240,12 @@ class ical_data_parser {
   private function _getRawEventData($ics_file)
   {
 
-    if(!is_file($ics_file.'_fixed')){
-      $fixer = new google_ics_fix();
-      $fixer->fixFile($ics_file);
-    }
-    $ics_calendar = new SG_iCalReader($ics_file.'_fixed');
+    // if(!is_file($ics_file.'_fixed')){
+    //   $fixer = new google_ics_fix();
+    //   $fixer->fixFile($ics_file);
+    // }
+    // $ics_calendar = new SG_iCalReader($ics_file.'_fixed');
+    $ics_calendar = new SG_iCalReader($ics_file);
     return $ics_calendar->getEvents();
   }
 
