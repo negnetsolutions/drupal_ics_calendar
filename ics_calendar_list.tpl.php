@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Available vars:
  * - $description: Containing the description of the FlickrGallery module you provided at the settings page
